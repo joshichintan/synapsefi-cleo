@@ -101,7 +101,6 @@
     
     ```
 
-
 #### Other API endpoints:
 - [ GET|CREATE|DELETE ]  USER_ACCOUNT   
     -   endpoint: http://localhost:5000/account/\<string:user_id\> 
