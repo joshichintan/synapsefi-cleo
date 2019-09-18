@@ -1,7 +1,7 @@
 # synapsefi_Cleo
 
 ### Description
-* Build flask restful apis for Cleo chat with minimal user interation and abstracting development complexity using synapsefi Apis
+* These apis built using flask restful for Cleo chat has minimal user interation and has abstracted development complexity using synapsefi Apis
 
 
 ## Installation(Prefered)
@@ -103,10 +103,12 @@
 
 #### Other API endpoints:
 - [ GET|CREATE|DELETE ]  USER_ACCOUNT   
-    -   endpoint: http://localhost:5000/account/ &lt;derp>string:user_id\&gt;derp
-  - Creates at least two ACH Accounts with different nicknames to make transactions
+   - endpoint: 'http://localhost:5000/account/(string:user_id)'
+   - Creates at least two ACH Accounts with different nicknames to make transactions
  
 - [ GET|POST]            Transaction    
-    - endpoint: http://localhost:5000/transaction/&lt;derp>string:user_id\&gt;derp#creates transaction 
+    - endpoint: 'http://localhost:5000/transaction/(string:user_id)' 
+    - creates transaction 
+    
 
 
