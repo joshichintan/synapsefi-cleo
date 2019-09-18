@@ -51,8 +51,8 @@
 ---
 > #### Step 1: Create USER
 * [POST] Create User 
-- Endpoint: **http://localhost:5000/users/**
-    >>>save the **'user_id'** received in the respones for the next steps
+- endpoint: **http://localhost:5000/users/**
+    >save the **'user_id'** received in the respones for the next steps
     
     ```json
     {
@@ -99,13 +99,13 @@
     ```  
 > #### Step 2: GET USER
 * [GET] User
-- endpoint:  **http://localhost:5000/users/<string:user_id>**
-    >>replace <string:user_id> with the available **'user_id'** 
+- endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
+    >replace <string:user_id> with the available **'user_id'** 
 
 > #### Step 3: PATCH USER
 * [PATCH] Update User data
--endpoint:  **http://localhost:5000/users/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
+-endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
     
     ```json 
     {
@@ -117,9 +117,10 @@
 
 > #### Step 4: CREATE ACCOUNT/NODE
 * [POST] CREATE USER ACCOUNT
--endpoint:  **endpoint: http://localhost:5000/account/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
-    --> **Create 2  accounts** with different nickname e.g **Fake Account1** & **Fake Account2**
+-endpoint:  **endpoint: http://localhost:5000/account/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
+    
+    > **Create 2  accounts** with different nickname e.g **Fake Account1** & **Fake Account2**
     --> **Save any one**  accounts **'node_id'** for future steps
     
     ```json 
@@ -133,8 +134,8 @@
     ```
 > #### Step 5: GET ACCOUNT
 * [GET] GET USER ACCOUNT
--endpoint:  **http://localhost:5000/account/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
+-endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
     
     ```json 
     {
@@ -144,9 +145,10 @@
 
 > #### Step 6: DELETE ACCOUNT
 * [DELETE] DELETE USER ACCOUNT
-- endpoint:  **http://localhost:5000/account/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
-    --> use the acc_id from the previous steps
+- endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
+    
+    > use the acc_id from the previous steps
     
     ```json 
     {
@@ -156,9 +158,10 @@
 
 > #### Step 7: POST TRANSACTION
 * [POST] CREATE TRANSACTION
-- endpoint:  **http://localhost:5000/transaction/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
-    --> use the nickname used for your own accounts
+- endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
+    
+    > use the nickname used for your own accounts
     
     ```json 
     {
@@ -170,18 +173,17 @@
     
 > #### Step 8: GET TRANSACTION
 * [GET] GET ALL USER TRANSACTION
-- endpoint:  **http://localhost:5000/transaction/<string:user_id>**
-    >> replace <string:user_id> with the available**'_id'**
+- endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
 ----------------------------
 ## Brief Documentation of APIS
 - [ GET|CREATE|PATCH ]  USERS   
-    -->   endpoint: http://localhost:5000/users/ <string:user_id>
-  --> Creates at least two ACH Accounts with different nicknames to make transactions
-
+    >   endpoint: http://localhost:5000/users/ `<`string:user_id`>`
+ 
 - [ GET|CREATE|DELETE ]  NODES   
-    -->   endpoint: http://localhost:5000/account/ <string:user_id>
-  --> Creates at least two ACH Accounts with different nicknames to make transactions
+    >   endpoint: http://localhost:5000/account/ `<`string:user_id`>`
  
 - [ GET|POST]  Transaction    
-    --> endpoint: http://localhost:5000/transaction/<string:user_id>
-    --> Creates transaction 
+    > endpoint: http://localhost:5000/transaction/`<`string:user_id`>`
+    
+    > 
