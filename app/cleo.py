@@ -92,7 +92,7 @@ class Users(Resource):
 		#step 3
 		user.confirm_2fa_pin('123456')
 		
-		return user,200
+		return new_user,200
 
 class Account(Resource):
 	def post(self,user_id):
@@ -110,20 +110,26 @@ class Account(Resource):
 		#Getting/creating  a Database for users
 		db = mongo_client['users']
 		db_users = db['users']
+		db_account = db['accounts']
 		user_db = db_users.find_one({'user_id':user_id})
 		#fething the user_id from the res
 		#getting the user form user id using synapsefi api
 		user = client.get_user(user_id)
+		user.oauth()
 		#creating account
 		body = {
-			  "type": req_body['type'],
+			  "type": "ACH-US",
 			  "info": {
 			    "nickname": req_body['nickname'],
-			    "document_id": user_db['docuemnts_id']
+			    "account_num": req_body['account_num'],
+			    "routing_num": req_body['routing_num'],
+			    "type": req_body['type'],
+			    "class": req_body['class']
 			  }
 			}
 
-		response = user.create_node(body, idempotency_key=request.headers.get('idempotency_key'))
+		response = user.create_node(body)
+		print(response)
 		#formatting respone
 		for account in response.list_of_nodes:
 			acc = account.body
@@ -134,7 +140,7 @@ class Account(Resource):
 			db_users.update_one({
 				'user_id':user_id},
 				{'$push':{'accounts':new_acc}})
-			 
+		
 		new_account = response.list_of_nodes[0].body
 		return  new_account,201
 		
@@ -152,13 +158,15 @@ class Account(Resource):
 		user_db = db_users.find_one({'user_id':user_id})
 		subaccount_node_id = ""
 		for account in user_db['accounts']:
-			if account[req_body['nickname']]:
-				subaccount_node_id = account[req_body['nickname']]
+			if account.get(req_body['nickname']):
+				subaccount_node_id = account.get(req_body['nickname'])
 				break
 		print(subaccount_node_id)
-		node = user.get_node(subaccount_node_id, full_dehydrate=True, force_refresh=True)
+		node = user.get_node(subaccount_node_id)
 		respose = node.body
-		return respose,201
+		return respose,200
+	def delete(self,user_id):
+		
 
 class Transaction(Resource):
 	def post(self,user_id):
@@ -176,20 +184,20 @@ class Transaction(Resource):
 
 		transfer_to = ""
 		transfer_from = ""
-		print(req_body)
+		
 		for acc1 in user_db['accounts']:
 			if acc1.get(req_body['to_account']) :
 				transfer_to = acc1.get(req_body['to_account'])
 				break
 		for acc2 in user_db['accounts']:
-			if acc1.get(req_body['to_account']):
-				transfer_from = acc1.get(req_body['to_account'])
+			if acc2.get(req_body['from_account']):
+				transfer_from = acc2.get(req_body['from_account'])
 				break
 
 		node_id = transfer_from
 		body = {
   				"to": {
-					    "type": "SUBDEPOSIT-US",
+					    "type": "ACH-US",
 					    "id": transfer_to
 					  },
 					  "amount": {
@@ -201,13 +209,15 @@ class Transaction(Resource):
 					    "note": "Notes"
 				  }
 				}
-		user.create_trans(node_id, body)
+		resp = user.create_trans(node_id, body)
+		
+		return resp.__dict__,200
 
-		return 200
+	def get()
 
 
 api.add_resource(Users ,'/users/','/users/<string:user_id>')
-api.add_resource(Account,'/account/<string:user_id>')
+api.add_resource(Account,'/account/','/account/<string:user_id>')
 api.add_resource(Transaction,'/transaction/<string:user_id>')
 
 if __name__ == "__main__":
