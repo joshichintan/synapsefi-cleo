@@ -5,7 +5,7 @@
 
 -----
 ## Installation(Prefered)
-- Git clone repository
+- Git clone repository ( clone usign terminal )
 * Get Client_id and Secret_key from synapseFi sandbox Dashboard and add it to config.py
 * Navigate to directory synapsefi_cleo/app  
 * #### Run following commands to start virtual env and to install dependencies
