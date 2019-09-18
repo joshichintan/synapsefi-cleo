@@ -1,7 +1,7 @@
 # synapsefi_Cleo
 
 ### Description
-* Build flask restful apis for Cleo chat with minimal user interation and abstracting development complexity using synapsefi Apis
+* These apis built using flask restful for Cleo chat has minimal user interation and has abstracted development complexity using synapsefi Apis
 
 
 ## Installation(Prefered)
