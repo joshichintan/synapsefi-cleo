@@ -103,7 +103,7 @@
 
 #### Other API endpoints:
 - [ GET|CREATE|DELETE ]  USER_ACCOUNT   
-   - endpoint: 'http://localhost:5000/account/ (string:user_id)'
+   - endpoint: 'http://localhost:5000/account/(string:user_id)'
    - Creates at least two ACH Accounts with different nicknames to make transactions
  
 - [ GET|POST]            Transaction    
