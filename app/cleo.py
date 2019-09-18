@@ -129,7 +129,6 @@ class Account(Resource):
 			}
 
 		response = user.create_node(body)
-		print(response)
 		#formatting respone
 		for account in response.list_of_nodes:
 			acc = account.body
@@ -156,17 +155,41 @@ class Account(Resource):
 		db = mongo_client['users']
 		db_users = db['users']
 		user_db = db_users.find_one({'user_id':user_id})
-		subaccount_node_id = ""
+		node_id = ""
 		for account in user_db['accounts']:
 			if account.get(req_body['nickname']):
-				subaccount_node_id = account.get(req_body['nickname'])
+				node_id = account.get(req_body['nickname'])
 				break
-		print(subaccount_node_id)
-		node = user.get_node(subaccount_node_id)
+		node = user.get_node(node_id)
 		respose = node.body
 		return respose,200
+
 	def delete(self,user_id):
+		req_body = request.get_json()
+		#fething new user from the synapsefi
+		user = client.get_user(user_id)
+
+		res = user.delete_node(req_body['node_id'])
+
+		return res,200
+		# mongo connection 
+		# mongo_client = MongoClient('localhost', 27017)
 		
+		# #Getting/creating  a Database for users
+		# db = mongo_client['users']
+		# db_users = db['users']
+		# user_db = db_users.find_one({'user_id':user_id})
+		# node_id = ""
+		# for account in user_db['accounts']:
+		# 	if account.get(req_body['nickname']):
+		# 		node_id = account.get(req_body['nickname'])
+		# 		break
+		# node = user.get_node(node_id)
+		# respose = node.body
+		# # db_users.update({'user_id':user_id},{'$pull':{'accounts':{req_body['nickname']:node_id}}})
+		# print(respose['_id'])
+		
+
 
 class Transaction(Resource):
 	def post(self,user_id):
@@ -213,7 +236,12 @@ class Transaction(Resource):
 		
 		return resp.__dict__,200
 
-	def get()
+	def get(self,user_id):
+		lis = []
+		transactions = client.get_all_trans()
+		for trans in transactions.list_of_trans:
+			lis.append(trans.__dict__)
+		return {"all_transactions":lis},200
 
 
 api.add_resource(Users ,'/users/','/users/<string:user_id>')
