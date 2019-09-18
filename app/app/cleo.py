@@ -30,7 +30,7 @@ class Users(Resource):
 		#new user data posting using synapsefi
 		user=res_dict['body']
 
-		return user,201
+		return user,200
 
 
 	def patch(self,user_id):
@@ -141,7 +141,7 @@ class Account(Resource):
 				{'$push':{'accounts':new_acc}})
 		
 		new_account = response.list_of_nodes[0].body
-		return  new_account,201
+		return  new_account,200
 		
 	def get(self,user_id):
 		req_body = request.get_json()
