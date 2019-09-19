@@ -72,7 +72,7 @@
 > #### Step 1: Create USER
 * [POST] Create User 
 * endpoint: **http://localhost:5000/users/**
-    >save the **'user_id'** received in the respones for the next steps
+    >save the **user_id** received in the respones for the next steps
     
     ```json
     {
@@ -120,12 +120,12 @@
 > #### Step 2: GET USER
 * [GET] User
 * endpoint:  **http://localhost:5000/users/`<string:user_id>`**
-    >replace `<string:user_id>` with the available **'user_id'** 
+    >replace `<string:user_id>` with the available **user_id** 
 
 > #### Step 3: PATCH USER
 * [PATCH] Update User data
 * endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
-    > replace <string:user_id> with the available **'_id'**
+    > replace `<string:user_id>` with the available **user_id**
     
     ```json 
     {
@@ -138,7 +138,7 @@
 > #### Step 4: CREATE ACCOUNT/NODE
 * [POST] CREATE USER ACCOUNT
 * endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
-    > replace <string:user_id> with the available **'_id'**
+    > replace `<string:user_id>` with the available **user_id**
     
     > **Create 2  accounts** with different nickname e.g **Fake Account1** & **Fake Account2**
     --> **Save any one**  accounts **'node_id'** for future steps
@@ -155,7 +155,7 @@
 > #### Step 5: GET ACCOUNT
 * [GET] GET USER ACCOUNT
 * endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
-    > replace <string:user_id> with the available **'_id'**
+    > replace `<string:user_id>` with the available **user_id**
     
     ```json 
     {
@@ -165,7 +165,7 @@
 > #### Step 6: POST TRANSACTION
 * [POST] CREATE TRANSACTION
 * endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
-    > replace <string:user_id> with the available **'_id'**
+    > replace `<string:user_id>` with the available **user_id**
     
     > use the nickname used for your own accounts
     
@@ -180,12 +180,12 @@
 > #### Step 7: GET TRANSACTION
 * [GET] GET ALL USER TRANSACTION
 * endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
-    > replace <string:user_id> with the available **'_id'**
+    > replace `<string:user_id>` with the available **user_id**
 
 > #### Step 8: DELETE ACCOUNT
 * [DELETE] DELETE USER ACCOUNT
 * endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
-    > replace <string:user_id> with the availabl e**'_id'**
+    > replace `<string:user_id>` with the availabl e**user_id**
     
     > use the acc_id from the previous steps
     
