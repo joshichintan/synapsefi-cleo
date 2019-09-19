@@ -1,11 +1,17 @@
-FROM python:3.6-slim
+FROM python:3
 
-USER root
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
-ADD . /app
 
-#ENV LDFLAGS "-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
-EXPOSE 5000
-ENV FLASK_APP start.py
-CMD ["python", "start.py"]
+RUN pip install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "app.py" ]

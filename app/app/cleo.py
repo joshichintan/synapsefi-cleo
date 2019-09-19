@@ -52,7 +52,7 @@ class Users(Resource):
 		#check for physical doc gov id
 
 		# mongo connection 
-		mongo_client = MongoClient('localhost', 27017)
+		mongo_client = MongoClient(Config.MONGO_URI)
 		
 		#Getting?creating  a Database for users
 		db = mongo_client['users']
@@ -105,7 +105,7 @@ class Account(Resource):
 		req_body = request.get_json()
 
 		# mongo connection 
-		mongo_client = MongoClient('localhost', 27017)
+		mongo_client = MongoClient(Config.MONGO_URI)
 		
 		#Getting/creating  a Database for users
 		db = mongo_client['users']
@@ -149,7 +149,7 @@ class Account(Resource):
 		user = client.get_user(user_id)
 
 		# mongo connection 
-		mongo_client = MongoClient('localhost', 27017)
+		mongo_client = MongoClient(Config.MONGO_URI)
 		
 		#Getting/creating  a Database for users
 		db = mongo_client['users']
@@ -197,7 +197,7 @@ class Transaction(Resource):
 
 		user = client.get_user(user_id)
 		# mongo connection 
-		mongo_client = MongoClient('localhost', 27017)
+		mongo_client = MongoClient(Config.MONGO_URI)
 		
 		#Getting/creating  a Database for users
 		db = mongo_client['users']
@@ -249,4 +249,4 @@ api.add_resource(Account,'/account/','/account/<string:user_id>')
 api.add_resource(Transaction,'/transaction/<string:user_id>')
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0",port=5000,debug=True)
+	app.run(host="0.0.0.0",debug=True)

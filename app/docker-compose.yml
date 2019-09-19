@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  mongo:
+    image: "mongo:latest"
+    ports:
+     - "27017:27017"
+    command: mongod --port 27017
+  app:
+    build: .
+    ports:
+     - "5000:5000"
+    links:
+     - mongo
+    depends_on:
+     - mongo
+    volumes:
+     - .:/code
+    environment:
+     - MONGO_URL=mongodb://mongo:27017
+  
