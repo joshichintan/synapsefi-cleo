@@ -19,7 +19,7 @@
 
 ------
 ## Testing
- * Import  **submit.postman_collection** file from root directory in **Postman** for testing purposes
+ * Import  `synapsefi_cleo/submit.postman_collection` directory in **Postman** for testing purposes
  ---------
 #### Maunual installation and setup info(if Docker fails)
 * #### Run following commands to start virtual env and to install dependencies
