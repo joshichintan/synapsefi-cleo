@@ -119,7 +119,7 @@
     ```  
 > #### Step 2: GET USER
 * [GET] User
-* endpoint:  **http://localhost:5000/users/`<string:user_id>`**
+* endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
     >replace `<string:user_id>` with the available **user_id** 
 
 > #### Step 3: PATCH USER
