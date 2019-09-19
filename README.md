@@ -2,7 +2,11 @@
 ------
 ### Description
 > Build flask restful apis for Cleo chat with minimal user interation and abstracting development complexity using synapsefi Apis
-
+## STACK USED
+* Mongodb
+* Docker
+* Flask Restful
+* Synapsefi APIs
 -----
 ## Installation using Docker  (Prefered)
 
