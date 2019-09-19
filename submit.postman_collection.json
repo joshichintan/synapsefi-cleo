@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "224767f7-90d1-4a88-8f4c-ec3559cc8731",
-		"name": "submit",
+		"_postman_id": "3175f781-75b2-472d-a197-330715ff80bf",
+		"name": "submit copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -210,7 +210,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nickname\": \"Fake Account\",\n    \"account_num\": \"1232225674134\",\n    \"routing_num\": \"051000017\",\n    \"type\": \"PERSONAL\",\n    \"class\": \"CHECKING\"\n}",
+							"raw": "{\n    \"nickname\": \"Fake Account1\",\n    \"account_num\": \"1232225674134\",\n    \"routing_num\": \"051000017\",\n    \"type\": \"PERSONAL\",\n    \"class\": \"CHECKING\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,7 +252,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"node_id\": \"5d816e0af9d32036648bee9e\" \n}",
+							"raw": "{\n    \"node_id\": \"5d83a2bd5068821912a11609\" \n}",
 							"options": {
 								"raw": {
 									"language": "json"
