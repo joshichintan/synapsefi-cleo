@@ -4,10 +4,24 @@
 > Build flask restful apis for Cleo chat with minimal user interation and abstracting development complexity using synapsefi Apis
 
 -----
-## Installation(Prefered)
-- Git clone repository ( clone usign terminal )
-* Get Client_id and Secret_key from synapseFi sandbox Dashboard and add it to config.py
-* Navigate to directory synapsefi_cleo/app  
+## Installation using Docker  (Prefered)
+
+#### Step 1 Install Docker:
+- Install docker (for more details follow this link: https://docs.docker.com/docker-for-mac/install/)
+#### Step 2:
+- clone this repository
+- navigate to directory `cd synapsefi_cleo/app`
+- update  CLIENT_ID, CLIENT_SECRET in  `config.py`
+- **Run following command in terminal**
+    ```
+    $ docker-compose up --build
+    ```
+
+------
+## Testing
+ * Import  **submit.postman_collection** file from root directory in **Postman** for testing purposes
+ ---------
+#### Maunual installation and setup info(if Docker fails)
 * #### Run following commands to start virtual env and to install dependencies
   ``` 
    #creating virtualenv
@@ -29,19 +43,6 @@
   ```python
     python3 start.py
   ```
-------
-## Testing
- * Import  **submit.postman_collection** file from root directory in **Postman** for testing purposes
- ---------
-#### Alternative Docker installation and setup info
-* Install docker(for more details follow this link: https://docs.docker.com/docker-for-mac/install/)
-* Navigate to synapsefi_cleo directory
-* Run following command 
-    ```python
-      docker build app
-      #Successfully built "78947a002b6fat"<- here is your image_id , this will be generated make sure to copy it, need it in next step 
-      docker run image_id #e.g 78947a002b6fa
-    ```
 -----
 
 ## API Documentation
@@ -186,4 +187,3 @@
 - [ GET|POST]  Transaction    
     > endpoint: http://localhost:5000/transaction/`<`string:user_id`>`
     
-    > 
