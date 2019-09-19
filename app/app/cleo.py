@@ -9,6 +9,8 @@ from flask_restful import Resource, Api
 from app import app
 from pymongo import MongoClient
 
+MONGO_URI = "mongodb://mongo:27017"
+
 client = Client(
     client_id=Config.CLIENT_ID,
     client_secret=Config.CLIENT_SECRET,
@@ -48,16 +50,17 @@ class Users(Resource):
 
 	def post(self,user_id=None):
 		body = request.get_json()
-		#check for virtual doc SSN DL
-		#check for physical doc gov id
+		# #check for virtual doc SSN DL
+		# #check for physical doc gov id
 
-		# mongo connection 
-		mongo_client = MongoClient(Config.MONGO_URI)
+		# # mongo connection 
+		mongo_client = MongoClient(MONGO_URI)
 		
-		#Getting?creating  a Database for users
-		db = mongo_client['users']
+		# #Getting?creating  a Database for users
+		db = mongo_client['database']
+
 		users = db['users']
-		#creating user
+		# #creating user
 		response = client.create_user(body,"127.0.0.1")
 
 		#formatting respone 
@@ -77,14 +80,14 @@ class Users(Resource):
 						'accounts':[]
 						 # 'user_ip': request.json['docuemnts'][0]['ip']
 						}
-		#store this to db response['id']
-		users.insert_one(db_entry)
+		# store this to db response['id']
+		users.insert(db_entry)
 		 
 		#getting the user 
 		user = client.get_user(new_user['_id'])
 		
-		# #2FA AUthorization ( 3 stpes using fingerprints)
-		#Step 1
+		#2FA AUthorization ( 3 stpes using fingerprints)
+		# Step 1
 		client.update_headers(fingerprint='123456')
 		user.oauth()
 		#Step 2
@@ -92,7 +95,7 @@ class Users(Resource):
 		#step 3
 		user.confirm_2fa_pin('123456')
 		
-		return new_user,200
+		return res_dict['body'],200
 
 class Account(Resource):
 	def post(self,user_id):
@@ -105,10 +108,10 @@ class Account(Resource):
 		req_body = request.get_json()
 
 		# mongo connection 
-		mongo_client = MongoClient(Config.MONGO_URI)
+		mongo_client = MongoClient(MONGO_URI)
 		
 		#Getting/creating  a Database for users
-		db = mongo_client['users']
+		db = mongo_client['database']
 		db_users = db['users']
 		db_account = db['accounts']
 		user_db = db_users.find_one({'user_id':user_id})
@@ -149,10 +152,10 @@ class Account(Resource):
 		user = client.get_user(user_id)
 
 		# mongo connection 
-		mongo_client = MongoClient(Config.MONGO_URI)
+		mongo_client = MongoClient(MONGO_URI)
 		
 		#Getting/creating  a Database for users
-		db = mongo_client['users']
+		db = mongo_client['database']
 		db_users = db['users']
 		user_db = db_users.find_one({'user_id':user_id})
 		node_id = ""
@@ -197,10 +200,10 @@ class Transaction(Resource):
 
 		user = client.get_user(user_id)
 		# mongo connection 
-		mongo_client = MongoClient(Config.MONGO_URI)
+		mongo_client = MongoClient(MONGO_URI)
 		
 		#Getting/creating  a Database for users
-		db = mongo_client['users']
+		db = mongo_client['database']
 		db_users = db['users']
 		user_db = db_users.find_one({'user_id':user_id})
 

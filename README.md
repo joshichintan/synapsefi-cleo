@@ -6,43 +6,58 @@
 -----
 ## Installation using Docker  (Prefered)
 
-#### Step 1 Install Docker:
-- Install docker (for more details follow this link: https://docs.docker.com/docker-for-mac/install/)
-#### Step 2:
-- clone this repository
-- navigate to directory `cd synapsefi_cleo/app`
-- update  CLIENT_ID, CLIENT_SECRET in  `config.py`
-- **Run following command in terminal**
+#### Install Docker:
+
+1. [Download Docker](https://download.docker.com/mac/beta/Docker.dmg)
+2. Double-click the DMG file, and drag-and-drop Docker into your Applications folder.
+3. You need to authorize the installation with your system password.
+4. Double-click `Docker.app` to start Docker.
+5. The whale in your status bar indicates Docker is running and accessible.
+6. Docker presents some information on completing common tasks and links to the documentation.
+#### Running APP:
+1. Clone repository
+2. navigate to directory `synapsefi_cleo/app`
+3. update CLIENT_ID, CLIENT_SECRET in  `config.py`
+4. Build and run Docker 
+  
     ```
-    $ docker-compose up --build
+      $ docker-compose up --build
     ```
 
 ------
 ## Testing
- * Import  `synapsefi_cleo/submit.postman_collection` directory in **Postman** for testing purposes
+Import  **submit.postman_collection** file from root directory in **Postman** for testing purposes
  ---------
 #### Maunual installation and setup info(if Docker fails)
-* #### Run following commands to start virtual env and to install dependencies
-  ``` 
-   #creating virtualenv
-    python3 -m venv env 
-    #installing mongodb(need hombrew install)
-    brew tap mongodb/brew 
-    brew install mongodb-community
-    #activating virtualenv
-    source env/bin/activate 
-    #installing requierement to the virtualenv
-    pip install -r requirements.txt
-    ```
+1. Run following commands to start virtual env and to install dependencies
+   
+   ``` 
+     $ python3 -m venv env
+   ```
+   ```
+     $ python3 -m venv env
+   ```
+   ```
+     $ brew tap mongodb/brew 
+   ```
+   ```
+     $ brew install mongodb-community
+   ```
+   ```
+     $ source env/bin/activate 
+   ```
+   ```
+     $ pip install -r requirements.txt
+   ```
 
-* 
-    #### Run the following command in a new instance terminal window(not the virtualenv) to start mongodb
+2. Run the following command in a new instance terminal window(not the virtualenv) to start mongodb
+   ```
+      mongod --config /usr/local/etc/mongod.conf
+   ```
+3. Go Back to virtualenv Start App
     ```
-     mongod --config /usr/local/etc/mongod.conf
-* #### Go Back to virtualenv Start App
-  ```python
-    python3 start.py
-  ```
+       python3 start.py
+    ```
 -----
 
 ## API Documentation
@@ -52,7 +67,7 @@
 ---
 > #### Step 1: Create USER
 * [POST] Create User 
-- endpoint: **http://localhost:5000/users/**
+* endpoint: **http://localhost:5000/users/**
     >save the **'user_id'** received in the respones for the next steps
     
     ```json
@@ -100,12 +115,12 @@
     ```  
 > #### Step 2: GET USER
 * [GET] User
-- endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
     >replace <string:user_id> with the available **'user_id'** 
 
 > #### Step 3: PATCH USER
 * [PATCH] Update User data
--endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/users/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
     
     ```json 
@@ -118,7 +133,7 @@
 
 > #### Step 4: CREATE ACCOUNT/NODE
 * [POST] CREATE USER ACCOUNT
--endpoint:  **endpoint: http://localhost:5000/account/`<`string:user_id`>`**
+* endpoint:  ** http://localhost:5000/account/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
     
     > **Create 2  accounts** with different nickname e.g **Fake Account1** & **Fake Account2**
@@ -135,7 +150,7 @@
     ```
 > #### Step 5: GET ACCOUNT
 * [GET] GET USER ACCOUNT
--endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
     
     ```json 
@@ -143,23 +158,9 @@
       "nickname": "Fake Account1"
     }
     ```
-
-> #### Step 6: DELETE ACCOUNT
-* [DELETE] DELETE USER ACCOUNT
-- endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
-    > replace <string:user_id> with the available**'_id'**
-    
-    > use the acc_id from the previous steps
-    
-    ```json 
-    {
-        "node_id": acc_id 
-    }
-    ```
-
-> #### Step 7: POST TRANSACTION
+> #### Step 6: POST TRANSACTION
 * [POST] CREATE TRANSACTION
-- endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
     
     > use the nickname used for your own accounts
@@ -172,10 +173,24 @@
     }
     ```
     
-> #### Step 8: GET TRANSACTION
+> #### Step 7: GET TRANSACTION
 * [GET] GET ALL USER TRANSACTION
-- endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/transaction/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
+
+> #### Step 8: DELETE ACCOUNT
+* [DELETE] DELETE USER ACCOUNT
+* endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
+    > replace <string:user_id> with the available**'_id'**
+    
+    > use the acc_id from the previous steps
+    
+    ```json 
+    {
+        "node_id": acc_id 
+    }
+    ```
+
 ----------------------------
 ## Brief Documentation of APIS
 - [ GET|CREATE|PATCH ]  USERS   
@@ -186,4 +201,3 @@
  
 - [ GET|POST]  Transaction    
     > endpoint: http://localhost:5000/transaction/`<`string:user_id`>`
-    
