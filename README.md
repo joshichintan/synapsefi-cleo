@@ -137,7 +137,7 @@
 
 > #### Step 4: CREATE ACCOUNT/NODE
 * [POST] CREATE USER ACCOUNT
-* endpoint:  ** http://localhost:5000/account/`<`string:user_id`>`**
+* endpoint:  **http://localhost:5000/account/`<`string:user_id`>`**
     > replace <string:user_id> with the available**'_id'**
     
     > **Create 2  accounts** with different nickname e.g **Fake Account1** & **Fake Account2**
