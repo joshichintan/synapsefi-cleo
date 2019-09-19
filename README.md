@@ -32,7 +32,7 @@
 ## Testing
 - Import  **submit.postman_collection** file from root directory in **Postman** for testing purposes
  ---------
-### [OPTIONAL (skip if docker runs succesfully)] Maunual installation and setup info
+### [OPTIONAL] Maunual installation and setup info (in case docker fails)
 1. Run following commands to start virtual env and to install dependencies
    
    ``` 
